@@ -11,7 +11,8 @@ def index_action(request):
     pname=request.POST.get('pname')
     pphone=request.POST.get('pphone')
     pselect=request.POST.get('pselect')
-    models.Mydb.objects.create(user_name=pname,user_phone=pphone,user_select=pselect)
+    parea= request.POST.get('parea')
+    models.Mydb.objects.create(user_name=pname,user_phone=pphone,user_select=pselect,user_area=parea)
     return render(request,'hello.html')
 
 def carname(request):
