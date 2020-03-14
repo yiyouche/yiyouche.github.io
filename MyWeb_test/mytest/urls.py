@@ -24,4 +24,7 @@ urlpatterns = [
     path('carname/',views.carname,name='carname'),
     path('carname_tj/',views.carname_tj,name='carname_tj'),
     path('info_page/(?P<user>\d+)',views.infos,name='infos'),
+    path('cars_info/',views.carsinfo,name='carsinfo'),
+    path('carsdel/(?P<cars_id>\d+)',views.carsdel,name='carsdel'),
+    path('carsup/',views.carsup,name='carsup'),
 ]
