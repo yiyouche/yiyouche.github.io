@@ -7,19 +7,14 @@
 	$pcar=$_GET["pcar"];
 	$pcity=$_GET["pcity"];
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "admin123";//mysql密码
-	$dbname = "yiyouche";//选择数据库
-	// 创建连接
+	include_once 'DataBaseMain.php';
 	$conn = new mysqli($servername, $username, $password,$db_name);
-	 
-	// 使用 sql 创建数据表
+
 	$sql = "CREATE TABLE yiyouche.MyGuests (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	pname VARCHAR(30),
 	pphone VARCHAR(30),
-	pcar VARCHAR(50),
+	pcar VARCHAR(255),
 	pcity VARCHAR(50),
 	reg_date TIMESTAMP
 	)";

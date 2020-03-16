@@ -2,10 +2,7 @@
 
     $id=$_GET['id'];
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "admin123";//mysql密码
-	$dbname = "yiyouche";//选择数据库
+	include_once 'DataBaseMain.php';
  
 	// 创建连接
 	$conn = new mysqli($servername, $username, $password, $dbname);

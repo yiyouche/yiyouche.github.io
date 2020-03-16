@@ -1,11 +1,6 @@
 <?php
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "admin123";//mysql密码
-	$dbname = "yiyouche";//选择数据库
- 
-	// 创建连接
+	include_once 'DataBaseMain.php';
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// 检测连接
 	if ($conn->connect_error) {

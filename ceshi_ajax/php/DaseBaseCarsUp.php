@@ -1,14 +1,10 @@
 <?php
 
 	$id=$_GET['id'];
-    $name=$_GET['name'];
+	$name=$_GET['name'];
+	$price=$_GET['price'];
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "admin123";//mysql密码
-	$dbname = "yiyouche";//选择数据库
- 
-	// 创建连接
+	include_once 'DataBaseMain.php';
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// 检测连接
 	if ($conn->connect_error) {
@@ -19,7 +15,7 @@
 
     $conn->query($sql);
     
-    $sql1 = "UPDATE Cars SET cars_name='$name' WHERE id='$id'";
+    $sql1 = "UPDATE Cars SET cars_name='$name',cars_price='$price'  WHERE id='$id'";
  
 	if($conn->query($sql1)==TRUE){
 		$sql2 = "SELECT * FROM Cars";//sql查询语句

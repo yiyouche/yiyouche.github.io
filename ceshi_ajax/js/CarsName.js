@@ -2,7 +2,7 @@ window.onload=function(){
 	$(function() {
 		$.ajax({
 			type: "GET",
-			url: "php/cars_infos.php",
+			url: "php/DataBaseUsers.php",
 			success: function(data) {
 				console.log(eval(data));
         	data = eval(data);

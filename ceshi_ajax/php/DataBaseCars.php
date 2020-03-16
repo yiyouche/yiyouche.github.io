@@ -3,18 +3,15 @@
 	header("Content-Type: text/html;charset=utf-8");
 
 	$CarsName=$_GET["CarsName"];
+	$CarsPrice=$_GET["CarsPrice"];
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "admin123";//mysql密码
-	$dbname = "yiyouche";//选择数据库
-	// 创建连接
+	include_once 'DataBaseMain.php';
 	$conn = new mysqli($servername, $username, $password,$db_name);
-	 
-	// 使用 sql 创建数据表
+
 	$sql1 = "CREATE TABLE yiyouche.Cars (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	cars_name VARCHAR(30),
+	cars_name VARCHAR(255),
+	cars_price VARCHAR(50),
 	reg_date TIMESTAMP
 	)";
  
@@ -25,8 +22,8 @@
 	$sql="use yiyouche";
 	
 	if($conn->query($sql)==TRUE){
-		$sql2 = "INSERT INTO Cars (cars_name)
-		VALUES ('$CarsName')";
+		$sql2 = "INSERT INTO Cars (cars_name,cars_price)
+		VALUES ('$CarsName','$CarsPrice')";
   
 		if ($conn->query($sql2) === TRUE) {
 			Header("Location: ../CarsName.html");
