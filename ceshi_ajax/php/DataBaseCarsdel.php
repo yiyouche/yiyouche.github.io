@@ -1,6 +1,6 @@
 <?php
 
-    $id=$_GET['id'];
+    $id=$_GET['del1'];
 
 	include_once 'DataBaseMain.php';
  

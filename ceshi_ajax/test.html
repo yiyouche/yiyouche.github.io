@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三级联动</title>
+</head>
+<body>
+    <form>
+        <select name="pro" id="">
+            <option value="">请选择省份</option>
+        </select>
+        <select name="city" id="" disabled="">
+            <option value="">请选择城市</option>
+        </select>
+        <select name="country" id="" disabled="">
+            <option value="">请选择区县</option>
+        </select>
+    </form>
+</body>
+</html>
+
+
+<script>
+    // var address = new Object();
+    var forms = document.forms[0]; //获取forms表单节点
+    //创建省份数组
+    var address = new Array();
+    address[0] = ['湖北省','湖南省','河南省'];
+    //创建城市数组
+    address["0_1"] = ['武汉市','鄂州市','黄冈市']
+    address["0_2"] = ['长沙市','娄底市','怀化市']
+    address["0_3"] = ['郑州市','洛阳市','开封市']
+    address["0_1_1"] = ['武昌区','汉阳区','洪山区']
+    address["0_1_2"] = ['鄂城区','葛店区','华容区']
+    address["0_1_3"] = ['黄州区','罗田区','梁子湖区']
+    //创建区县数组
+    address["0_2_1"] = ['aaa','sss','ddd']
+    address["0_2_2"] = ['aaa','sss','ddd']
+    address["0_2_3"] = ['aaa','sss','ddd']
+    address["0_3_1"] = ['aaa','sss','ddd']
+    address["0_3_2"] = ['aaa','sss','ddd']
+    address["0_3_3"] = ['aaa','sss','ddd']
+
+    //循环遍历 下标【0】的省份数组
+    for( i = 0 ; i <address[0].length; i++){
+      var opt = document.createElement("option");//创建节点
+      opt.innerHTML = address[0][i];//添加内容
+      forms.pro.appendChild(opt);//追加对应节点
+    }
+    //省份节点发生改变的时候触发的方法
+    forms.pro.onchange = function(){
+      if (forms.pro.selectedIndex !=0){//判断selectedIndex下标是否为0
+          forms.city.innerHTML = "<option>请选择城市</option>"
+          forms.country.innerHTML = "<option>请选择区县</option>"
+          forms.city.disabled = false;// 不为0的情况下，解除城市选项的锁定
+          proNum = forms.pro.selectedIndex;
+          for(var i = 0 ; i<address["0_"+proNum].length;i++){
+              var opt = document.createElement("option")
+              opt.innerHTML = address["0_"+proNum][i];
+              forms.city.appendChild(opt)
+          }
+      }else{
+          forms.city.disabled = true;
+          forms.country.disabled = true;
+          forms.city.innerHTML = "<option>请选择城市</option>"
+          forms.country.innerHTML = "<option>请选择区县</option>"
+      }
+    }
+      forms.city.onchange = function(){
+          if (forms.city.selectedIndex !=0){
+              forms.country.innerHTML = "<option>请选择区县</option>"
+              forms.country.disabled = false;
+              proNum = forms.pro.selectedIndex;
+              var numum = forms.city.selectedIndex;
+              for(var i = 0 ; i<address["0_" + proNum+"_"+numum].length;i++){
+                  var opt = document.createElement("option");
+                  opt.innerHTML = address["0_"+proNum+"_"+numum][i];
+                  forms.country.appendChild(opt);
+              }
+          }else{
+              forms.country.disabled = true;
+              forms.country.innerHTML = "<option>请选择区县</option>"
+          }
+
+      }
+</script>
